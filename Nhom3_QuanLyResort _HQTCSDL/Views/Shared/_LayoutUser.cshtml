@@ -1,0 +1,139 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuKaiAn Resort</title>
+
+    <!-- Bootstrap 5-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+
+    <!-- Swiper css -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- Css-->
+    <link rel="stylesheet" href="~/Public/css/style.css">
+    <link rel="stylesheet" href="~/Public/css/responsive-style.css">
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    <!-- Navbar section -->
+    <header class="header_wrapper">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="~/Public/images/logo.png" class="img-fruid" alt="logo" style="width: 200px; height: 100px">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- <span class="navbar-toggler-icon"></span> -->
+                    <i class="fas fa-stream "></i>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav menu-navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#home">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#rooms">Phòng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Dịch vụ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#team">Nhân viên</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#price">Giá phòng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Liên hệ</a>
+                        </li>
+                        <li class="nav-item mt-3 mt-lg-0">
+                            <a class="main-btn" href="check_room.html">Đặt Phòng Ngay</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navbar section exit -->
+    @RenderBody();
+    <!-- Footer Section -->
+    <section id="contact" class="footer_wrapper mt-3 mt-md-0 pb-0">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <h5>HuKaiAn Resort</h5>
+                    <p class="ps-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, suscipit.</p>
+                    <div class="contact-info">
+                        <ul class="list-unstyled">
+                            <li><a href="#"></a><i class="fa fa-home me-3"></i>828 Sư Vạn Hạnh, Phường 12, Quận 10, Thành phố Hồ Chí Minh, Việt Nam</li>
+                            <li><a href="#"></a><i class="fa fa-phone me-3"></i>+ 84 932 7871 32</li>
+                            <li><a href="#"></a><i class="fa fa-envelope me-3"></i>hukaian@resort.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>More Link</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Công việc của chúng tôi</a></li>
+                        <li><a href="#">Dịch vụ đưa đón</a></li>
+                        <li><a href="#">Bảo hiểm</a></li>
+                        <li><a href="#">Mua thẻ quà tặng</a></li>
+                        <li><a href="#">Chính sách hoàn trả dịch vụ</a></li>
+                        <li><a href="#">Điều khoản & Chính sách</a></li>
+                        <li><a href="#">An ninh & Bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>More Link</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Công việc của chúng tôi</a></li>
+                        <li><a href="#">Dịch vụ đưa đón</a></li>
+                        <li><a href="#">Bảo hiểm</a></li>
+                        <li><a href="#">Mua thẻ quà tặng</a></li>
+                        <li><a href="#">Chính sách hoàn trả dịch vụ</a></li>
+                        <li><a href="#">Điều khoản & Chính sách</a></li>
+                        <li><a href="#">An ninh & Bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Phản hồi</h5>
+                    <div class="form-group mb-4">
+                        <input type="email" class="form-control bg-transparent" placeholder="Nhập email...">
+                        <button class="main-btn rounded-2 mt-3 border-white text-white">Gửi</button>
+                    </div>
+                    <h5>Liên Hệ</h5>
+                    <ul class="social-network d-flex align-items-center p-0">
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid copyright-section">
+            <p>Copyright <a href="#">© CODE4EDUCATION.</a> All Rights Reserved</p>
+        </div>
+    </section>
+    <!-- Footer Section exit -->
+    <!-- Bootstrap 5 JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- Custom JS link -->
+    <script src="~/Public/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    <link href="~/Areas/Admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+}
+
+<div style="margin: 20px;">
+    <h2>Trang Chủ</h2>
+
+    <div style="width: 100px; height:27px; background-color:aquamarine; align-content:center; text-align: center; border-radius: 5px; margin:20px 0;">
+        <p>
+            @Html.ActionLink("Thêm mới", "Create", null, new { style = "text-decoration:none; color: #fff; text-align:center;" })
+        </p>
+    </div>
+    <table class="table table-hover">
+        <thead class="mdb-color thead-dark">
+            <tr class="text-black">
+                <th>
+                    Mã Đơn Hàng
+                </th>
+                <th>
+                    Mã Phòng
+                </th>
+                <th>
+                    Phương thức thanh toán
+                </th>
+                <th>
+                    Mã phiếu xác nhận
+                </th>
+                <th>
+                    Tên Khách Hàng
+                </th>
+                <th>
+                    Ngày Đặt Phòng
+                </th>
+                <th>
+                    Ngày Trả Phòng
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td>532</td>
+            <td>202</td>
+            <td>Ví Momo</td>
+            <td>12401</td>
+            <td>Phan Kim Loan</td>
+            <td>12/04/2022</td>
+            <td>16/04/2022</td>
+            <td>
+                @*@Html.ActionLink("Sửa", "Edit", new { id = item.customerID }) |
+                    @Html.ActionLink("Xem", "Details", new { id = item.customerID }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.customerID })*@
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+
+
