@@ -1053,6 +1053,7 @@ and c.NgayDatPhong BETWEEN '2022-03-30' AND '2022-04-10'
 
 ------------- Các View hiện dữ liệu --------------------------------------------
 --- 1. Tạo View hiển thị thông tin Nhân Viên
+
 create view ThongTinNhanVien AS
 select nv.MaNV, nv.HoTen, nv.GioiTinh, nv.MaChucVu, cv.TenChucVu
 from NhanVien nv, ChucVu cv
@@ -2048,14 +2049,14 @@ go
 --- tu day
 use QLResort
 go
-Create PROCEDURE sp_TimKiemPhong
+create PROCEDURE sp_TimKiemPhong
 @GiaTri nvarchar(50),
 @GiaThap decimal(16, 2),
 @GiaCao decimal(16, 2)
 AS
 begin
 	select * from Phong p, LoaiPhong lp 
-	where (p.MaLoai = lp.MaLoai) and (CHARINDEX(@GiaTri, p.MoTaThongTin) > 0 or (ISNUMERIC(@GiaTri) = 1 and CAST(@GiaTri AS int)  = p.MaPhong))
+	where (p.MaLoai = lp.MaLoai) and (CHARINDEX(@GiaTri, p.MoTaThongTin) > 0 or CHARINDEX(@GiaTri, CAST(p.MaPhong AS nvarchar(4))) > 0)
 			and 10 <= p.DonGia and @GiaCao >= p.DonGia and p.TrangThai = 0
 end
 go
@@ -2073,7 +2074,9 @@ go
 
 CREATE PROCEDURE sp_GetDonDatPhong
 AS
+begin
 	SELECT dp.* FROM DatPhong dp, Phong p where p.MaPhong = dp.MaPhong
+end
 go
 
 exec GetDonDatPhong 
@@ -2089,6 +2092,7 @@ Create PROCEDURE sp_ThemDonDatPhong
 @NgayTraPhong smalldatetime,
 @YeuCauThem nvarchar(255)
 AS
+begin
 	begin try
 		begin tran
 			INSERT into DatPhong values (@MaPhong, @MaPhuongThuc, @MaPhieuXacNhan, @TenKH, @NgayDatPhong, @NgayTraPhong, @YeuCauThem)
@@ -2098,6 +2102,7 @@ AS
 		rollback tran
 		SELECT ERROR_MESSAGE()
 	end catch
+end
 go
 
 exec sp_ThemDonDatPhong N'101', 1, NULL, N'ABC', '2022-03-29 00:00:00', '2022-03-30 00:00:00', NULL
@@ -2113,6 +2118,7 @@ Create PROCEDURE sp_SuaDonDatPhong
 @NgayTraPhong smalldatetime,
 @YeuCauThem nvarchar(255)
 AS
+begin
 	begin try
 		begin tran
 			Update DatPhong set 
@@ -2130,6 +2136,7 @@ AS
 		rollback tran
 		SELECT ERROR_MESSAGE()
 	end catch
+end
 go
 
 exec sp_SuaDonDatPhong 33, N'101', 1, NULL, N'ABCD', '2022-03-29 00:00:00', '2022-03-30 00:00:00', N'Ví dụ'
@@ -2138,6 +2145,7 @@ go
 Create PROCEDURE sp_XoaDonDatPhong
 @MaDatPhong smallint
 AS
+begin
 	begin try
 		begin tran
 			Delete from DatPhong where MaDatPhong = @MaDatPhong
@@ -2147,8 +2155,15 @@ AS
 		rollback tran
 		SELECT ERROR_MESSAGE()
 	end catch
-	
+end
 go
 
 exec sp_XoaDonDatPhong 33
 go
+
+create proc sp_GetAllPhong
+as
+begin
+	select *
+	from Phong
+end
