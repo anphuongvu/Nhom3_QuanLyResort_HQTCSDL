@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Nhom3_QuanLyResort__HQTCSDL.Controllers
 {
-    public class HomeController : Controller
+    public class NguoiDungController : Controller
     {
         public ActionResult Index()
         {

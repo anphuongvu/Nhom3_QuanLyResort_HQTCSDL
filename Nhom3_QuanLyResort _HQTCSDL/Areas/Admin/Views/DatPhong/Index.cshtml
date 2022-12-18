@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Nhom3_QuanLyResort__HQTCSDL.Models.DatPhong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDatPhong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayTraPhong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YeuCauThem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckInOut.TenKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhieuXacNhanDatPhong.TenKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phong.HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDatPhong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayTraPhong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YeuCauThem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckInOut.TenKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhieuXacNhanDatPhong.TenKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phong.HinhAnh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.TenPhuongThuc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaDatPhong }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaDatPhong }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaDatPhong })
+        </td>
+    </tr>
+}
+
+</table>

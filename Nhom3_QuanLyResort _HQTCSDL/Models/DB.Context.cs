@@ -41,12 +41,10 @@ namespace Nhom3_QuanLyResort__HQTCSDL.Models
         public virtual DbSet<PhieuXacNhanDatPhong> PhieuXacNhanDatPhongs { get; set; }
         public virtual DbSet<Phong> Phongs { get; set; }
         public virtual DbSet<PhuongThucThanhToan> PhuongThucThanhToans { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<TienIchResort> TienIchResorts { get; set; }
         public virtual DbSet<ThongKeDoanhThu> ThongKeDoanhThus { get; set; }
         public virtual DbSet<DanhSachTaiKhoanKhachHang> DanhSachTaiKhoanKhachHangs { get; set; }
-        public virtual DbSet<KhachHangNu> KhachHangNus { get; set; }
         public virtual DbSet<ThongTinCheckInOut> ThongTinCheckInOuts { get; set; }
         public virtual DbSet<ThongTinDatPhong> ThongTinDatPhongs { get; set; }
         public virtual DbSet<ThongTinNhanVien> ThongTinNhanViens { get; set; }
@@ -367,6 +365,208 @@ namespace Nhom3_QuanLyResort__HQTCSDL.Models
         public virtual ObjectResult<sp_GetAllPhong_Result> sp_GetAllPhong()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllPhong_Result>("sp_GetAllPhong");
+        }
+    
+        public virtual ObjectResult<sp_GetDonDatPhong_Result> sp_GetDonDatPhong()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetDonDatPhong_Result>("sp_GetDonDatPhong");
+        }
+    
+        public virtual ObjectResult<string> sp_SuaDonDatPhong(Nullable<short> maDatPhong, Nullable<short> maPhong, Nullable<short> maPhuongThuc, Nullable<short> maPhieuXacNhan, string tenKH, Nullable<System.DateTime> ngayDatPhong, Nullable<System.DateTime> ngayTraPhong, string yeuCauThem)
+        {
+            var maDatPhongParameter = maDatPhong.HasValue ?
+                new ObjectParameter("MaDatPhong", maDatPhong) :
+                new ObjectParameter("MaDatPhong", typeof(short));
+    
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(short));
+    
+            var maPhuongThucParameter = maPhuongThuc.HasValue ?
+                new ObjectParameter("MaPhuongThuc", maPhuongThuc) :
+                new ObjectParameter("MaPhuongThuc", typeof(short));
+    
+            var maPhieuXacNhanParameter = maPhieuXacNhan.HasValue ?
+                new ObjectParameter("MaPhieuXacNhan", maPhieuXacNhan) :
+                new ObjectParameter("MaPhieuXacNhan", typeof(short));
+    
+            var tenKHParameter = tenKH != null ?
+                new ObjectParameter("TenKH", tenKH) :
+                new ObjectParameter("TenKH", typeof(string));
+    
+            var ngayDatPhongParameter = ngayDatPhong.HasValue ?
+                new ObjectParameter("NgayDatPhong", ngayDatPhong) :
+                new ObjectParameter("NgayDatPhong", typeof(System.DateTime));
+    
+            var ngayTraPhongParameter = ngayTraPhong.HasValue ?
+                new ObjectParameter("NgayTraPhong", ngayTraPhong) :
+                new ObjectParameter("NgayTraPhong", typeof(System.DateTime));
+    
+            var yeuCauThemParameter = yeuCauThem != null ?
+                new ObjectParameter("YeuCauThem", yeuCauThem) :
+                new ObjectParameter("YeuCauThem", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_SuaDonDatPhong", maDatPhongParameter, maPhongParameter, maPhuongThucParameter, maPhieuXacNhanParameter, tenKHParameter, ngayDatPhongParameter, ngayTraPhongParameter, yeuCauThemParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_ThemDonDatPhong(Nullable<short> maPhong, Nullable<short> maPhuongThuc, Nullable<short> maPhieuXacNhan, string tenKH, Nullable<System.DateTime> ngayDatPhong, Nullable<System.DateTime> ngayTraPhong, string yeuCauThem)
+        {
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(short));
+    
+            var maPhuongThucParameter = maPhuongThuc.HasValue ?
+                new ObjectParameter("MaPhuongThuc", maPhuongThuc) :
+                new ObjectParameter("MaPhuongThuc", typeof(short));
+    
+            var maPhieuXacNhanParameter = maPhieuXacNhan.HasValue ?
+                new ObjectParameter("MaPhieuXacNhan", maPhieuXacNhan) :
+                new ObjectParameter("MaPhieuXacNhan", typeof(short));
+    
+            var tenKHParameter = tenKH != null ?
+                new ObjectParameter("TenKH", tenKH) :
+                new ObjectParameter("TenKH", typeof(string));
+    
+            var ngayDatPhongParameter = ngayDatPhong.HasValue ?
+                new ObjectParameter("NgayDatPhong", ngayDatPhong) :
+                new ObjectParameter("NgayDatPhong", typeof(System.DateTime));
+    
+            var ngayTraPhongParameter = ngayTraPhong.HasValue ?
+                new ObjectParameter("NgayTraPhong", ngayTraPhong) :
+                new ObjectParameter("NgayTraPhong", typeof(System.DateTime));
+    
+            var yeuCauThemParameter = yeuCauThem != null ?
+                new ObjectParameter("YeuCauThem", yeuCauThem) :
+                new ObjectParameter("YeuCauThem", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_ThemDonDatPhong", maPhongParameter, maPhuongThucParameter, maPhieuXacNhanParameter, tenKHParameter, ngayDatPhongParameter, ngayTraPhongParameter, yeuCauThemParameter);
+        }
+    
+        public virtual ObjectResult<sp_TimKiemPhong_Result> sp_TimKiemPhong(string giaTri, Nullable<decimal> giaThap, Nullable<decimal> giaCao)
+        {
+            var giaTriParameter = giaTri != null ?
+                new ObjectParameter("GiaTri", giaTri) :
+                new ObjectParameter("GiaTri", typeof(string));
+    
+            var giaThapParameter = giaThap.HasValue ?
+                new ObjectParameter("GiaThap", giaThap) :
+                new ObjectParameter("GiaThap", typeof(decimal));
+    
+            var giaCaoParameter = giaCao.HasValue ?
+                new ObjectParameter("GiaCao", giaCao) :
+                new ObjectParameter("GiaCao", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TimKiemPhong_Result>("sp_TimKiemPhong", giaTriParameter, giaThapParameter, giaCaoParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_XoaDonDatPhong(Nullable<short> maDatPhong)
+        {
+            var maDatPhongParameter = maDatPhong.HasValue ?
+                new ObjectParameter("MaDatPhong", maDatPhong) :
+                new ObjectParameter("MaDatPhong", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_XoaDonDatPhong", maDatPhongParameter);
+        }
+    
+        public virtual ObjectResult<GetDonDatPhong_Result> GetDonDatPhong()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDonDatPhong_Result>("GetDonDatPhong");
+        }
+    
+        public virtual ObjectResult<string> SuaDonDatPhong(Nullable<short> maDatPhong, Nullable<short> maPhong, Nullable<short> maPhuongThuc, Nullable<short> maPhieuXacNhan, string tenKH, Nullable<System.DateTime> ngayDatPhong, Nullable<System.DateTime> ngayTraPhong, string yeuCauThem)
+        {
+            var maDatPhongParameter = maDatPhong.HasValue ?
+                new ObjectParameter("MaDatPhong", maDatPhong) :
+                new ObjectParameter("MaDatPhong", typeof(short));
+    
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(short));
+    
+            var maPhuongThucParameter = maPhuongThuc.HasValue ?
+                new ObjectParameter("MaPhuongThuc", maPhuongThuc) :
+                new ObjectParameter("MaPhuongThuc", typeof(short));
+    
+            var maPhieuXacNhanParameter = maPhieuXacNhan.HasValue ?
+                new ObjectParameter("MaPhieuXacNhan", maPhieuXacNhan) :
+                new ObjectParameter("MaPhieuXacNhan", typeof(short));
+    
+            var tenKHParameter = tenKH != null ?
+                new ObjectParameter("TenKH", tenKH) :
+                new ObjectParameter("TenKH", typeof(string));
+    
+            var ngayDatPhongParameter = ngayDatPhong.HasValue ?
+                new ObjectParameter("NgayDatPhong", ngayDatPhong) :
+                new ObjectParameter("NgayDatPhong", typeof(System.DateTime));
+    
+            var ngayTraPhongParameter = ngayTraPhong.HasValue ?
+                new ObjectParameter("NgayTraPhong", ngayTraPhong) :
+                new ObjectParameter("NgayTraPhong", typeof(System.DateTime));
+    
+            var yeuCauThemParameter = yeuCauThem != null ?
+                new ObjectParameter("YeuCauThem", yeuCauThem) :
+                new ObjectParameter("YeuCauThem", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SuaDonDatPhong", maDatPhongParameter, maPhongParameter, maPhuongThucParameter, maPhieuXacNhanParameter, tenKHParameter, ngayDatPhongParameter, ngayTraPhongParameter, yeuCauThemParameter);
+        }
+    
+        public virtual ObjectResult<string> ThemDonDatPhong(Nullable<short> maPhong, Nullable<short> maPhuongThuc, Nullable<short> maPhieuXacNhan, string tenKH, Nullable<System.DateTime> ngayDatPhong, Nullable<System.DateTime> ngayTraPhong, string yeuCauThem)
+        {
+            var maPhongParameter = maPhong.HasValue ?
+                new ObjectParameter("MaPhong", maPhong) :
+                new ObjectParameter("MaPhong", typeof(short));
+    
+            var maPhuongThucParameter = maPhuongThuc.HasValue ?
+                new ObjectParameter("MaPhuongThuc", maPhuongThuc) :
+                new ObjectParameter("MaPhuongThuc", typeof(short));
+    
+            var maPhieuXacNhanParameter = maPhieuXacNhan.HasValue ?
+                new ObjectParameter("MaPhieuXacNhan", maPhieuXacNhan) :
+                new ObjectParameter("MaPhieuXacNhan", typeof(short));
+    
+            var tenKHParameter = tenKH != null ?
+                new ObjectParameter("TenKH", tenKH) :
+                new ObjectParameter("TenKH", typeof(string));
+    
+            var ngayDatPhongParameter = ngayDatPhong.HasValue ?
+                new ObjectParameter("NgayDatPhong", ngayDatPhong) :
+                new ObjectParameter("NgayDatPhong", typeof(System.DateTime));
+    
+            var ngayTraPhongParameter = ngayTraPhong.HasValue ?
+                new ObjectParameter("NgayTraPhong", ngayTraPhong) :
+                new ObjectParameter("NgayTraPhong", typeof(System.DateTime));
+    
+            var yeuCauThemParameter = yeuCauThem != null ?
+                new ObjectParameter("YeuCauThem", yeuCauThem) :
+                new ObjectParameter("YeuCauThem", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ThemDonDatPhong", maPhongParameter, maPhuongThucParameter, maPhieuXacNhanParameter, tenKHParameter, ngayDatPhongParameter, ngayTraPhongParameter, yeuCauThemParameter);
+        }
+    
+        public virtual ObjectResult<TimKiemPhong_Result> TimKiemPhong(string giaTri, Nullable<decimal> giaThap, Nullable<decimal> giaCao)
+        {
+            var giaTriParameter = giaTri != null ?
+                new ObjectParameter("GiaTri", giaTri) :
+                new ObjectParameter("GiaTri", typeof(string));
+    
+            var giaThapParameter = giaThap.HasValue ?
+                new ObjectParameter("GiaThap", giaThap) :
+                new ObjectParameter("GiaThap", typeof(decimal));
+    
+            var giaCaoParameter = giaCao.HasValue ?
+                new ObjectParameter("GiaCao", giaCao) :
+                new ObjectParameter("GiaCao", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TimKiemPhong_Result>("TimKiemPhong", giaTriParameter, giaThapParameter, giaCaoParameter);
+        }
+    
+        public virtual ObjectResult<string> XoaDonDatPhong(Nullable<short> maDatPhong)
+        {
+            var maDatPhongParameter = maDatPhong.HasValue ?
+                new ObjectParameter("MaDatPhong", maDatPhong) :
+                new ObjectParameter("MaDatPhong", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("XoaDonDatPhong", maDatPhongParameter);
         }
     }
 }

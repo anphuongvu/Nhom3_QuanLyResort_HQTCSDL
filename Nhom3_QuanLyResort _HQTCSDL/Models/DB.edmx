@@ -74,9 +74,14 @@
           <Property Name="MaLoai" Type="smallint" Nullable="false" />
           <Property Name="DonGia" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLResort.dbo.KhachHang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="KhachHang">
           <Key>
             <PropertyRef Name="MaKH" />
+            
+            
+            
           </Key>
           <Property Name="MaKH" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -147,16 +152,6 @@
           <Property Name="MaPhuongThuc" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenPhuongThuc" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
             <PropertyRef Name="MaTaiKhoan" />
@@ -167,13 +162,6 @@
           <Property Name="MaPQ" Type="smallint" />
           <Property Name="MaKH" Type="smallint" />
           <Property Name="MaNV" Type="smallint" />
-        </EntityType>
-        <EntityType Name="TienIchResort">
-          <Key>
-            <PropertyRef Name="MaTienIch" />
-          </Key>
-          <Property Name="MaTienIch" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenTienIch" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongKeDoanhThu">
           <Key>
@@ -186,6 +174,13 @@
           <Property Name="ChiTiet" Type="nvarchar" MaxLength="255" />
           <Property Name="MaNV" Type="smallint" Nullable="false" />
           <Property Name="TongDoanhThu" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="TienIchResort">
+          <Key>
+            <PropertyRef Name="MaTienIch" />
+          </Key>
+          <Property Name="MaTienIch" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenTienIch" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'QLResort.dbo.DanhSachTaiKhoanKhachHang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -201,24 +196,6 @@ warning 6002: The table/view 'QLResort.dbo.DanhSachTaiKhoanKhachHang' does not h
           <Property Name="Passwordd" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="MaPQ" Type="smallint" />
           <Property Name="TenPQ" Type="nvarchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'QLResort.dbo.KhachHangNu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="KhachHangNu">
-          <Key>
-            <PropertyRef Name="MaKH" />
-            <PropertyRef Name="HoTen" />
-            <PropertyRef Name="SoCMND" />
-            <PropertyRef Name="SDT" />
-          </Key>
-          <Property Name="MaKH" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="GioiTinh" Type="nvarchar" MaxLength="5" />
-          <Property Name="SoCMND" Type="bigint" Nullable="false" />
-          <Property Name="SDT" Type="int" Nullable="false" />
-          <Property Name="QuocTich" Type="nvarchar" MaxLength="100" />
-          <Property Name="NgaySinh" Type="smalldatetime" />
-          <Property Name="MaTaiKhoan" Type="smallint" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'QLResort.dbo.ThongTinCheckInOut' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -333,6 +310,19 @@ warning 6002: The table/view 'QLResort.dbo.XemTenPhong' does not have a primary 
           <Property Name="TenLoai" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="XemThongTinPhong1Giuong">
+          <Key>
+            <PropertyRef Name="MaPhong" />
+            <PropertyRef Name="TenLoai" />
+            <PropertyRef Name="SoGiuong" />
+          </Key>
+          <Property Name="MaPhong" Type="smallint" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SoGiuong" Type="smallint" Nullable="false" />
+          <Property Name="DonGia" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'QLResort.dbo.XemTienIch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="XemTienIch">
           <Key>
@@ -345,19 +335,6 @@ warning 6002: The table/view 'QLResort.dbo.XemTienIch' does not have a primary k
           <Property Name="MaTienIch" Type="smallint" Nullable="false" />
           <Property Name="TenKH" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TenTienIch" Type="nvarchar" MaxLength="150" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="XemThongTinPhong1Giuong">
-          <Key>
-            <PropertyRef Name="MaPhong" />
-            <PropertyRef Name="TenLoai" />
-            <PropertyRef Name="SoGiuong" />
-          </Key>
-          <Property Name="MaPhong" Type="smallint" Nullable="false" />
-          <Property Name="TenLoai" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="SoGiuong" Type="smallint" Nullable="false" />
-          <Property Name="DonGia" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_CheckInOut_DatPhong">
           <End Role="DatPhong" Type="Self.DatPhong" Multiplicity="1" />
@@ -491,18 +468,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_KhachHang_TaiKhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1" />
-          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="MaTaiKhoan" />
-            </Principal>
-            <Dependent Role="KhachHang">
-              <PropertyRef Name="MaTaiKhoan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_NhanVien_ChucVu">
           <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
@@ -563,42 +528,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TaiKhoan_KhachHang">
-          <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KhachHang">
-              <PropertyRef Name="MaKH" />
-            </Principal>
-            <Dependent Role="TaiKhoan">
-              <PropertyRef Name="MaKH" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TaiKhoan_NhanVien">
-          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NhanVien">
-              <PropertyRef Name="MaNV" />
-            </Principal>
-            <Dependent Role="TaiKhoan">
-              <PropertyRef Name="MaNV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TaiKhoan_PhanQuyen">
-          <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="0..1" />
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhanQuyen">
-              <PropertyRef Name="MaPQ" />
-            </Principal>
-            <Dependent Role="TaiKhoan">
-              <PropertyRef Name="MaPQ" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ThongKeDoanhThu_NhanVien">
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
           <End Role="ThongKeDoanhThu" Type="Self.ThongKeDoanhThu" Multiplicity="*" />
@@ -624,6 +553,9 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <Parameter Name="NgayDatPhong" Type="smalldatetime" Mode="In" />
           <Parameter Name="NgayTraPhong" Type="smalldatetime" Mode="In" />
         </Function>
+        <Function Name="f_ThongKeTienIch_Phong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="TenTI" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="f_TimloaiPTTT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="TenPTTT" Type="nvarchar" Mode="In" />
         </Function>
@@ -639,72 +571,33 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
         <Function Name="f_TongTienThuePhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
           <Parameter Name="MaDatPhong" Type="smallint" Mode="In" />
         </Function>
-        <Function Name="f_ThongKeDoanhThu_NV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
-          <Parameter Name="MaNV" Type="int" Mode="In" />
-        </Function>
-        <Function Name="f_ThongKeDV_SoLuong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="MaPhong" Type="smallint" Mode="In" />
-        </Function>
-        <Function Name="f_ThongKeLoaiDV_SoLuong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="LoaiDV" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="f_ThongKeTienIch_Phong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="TenTI" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="f_ThongKeTienIch_SoLuong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="MaPhong" Type="smallint" Mode="In" />
-        </Function>
         <Function Name="f_XemKhachDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="smallint">
           <Parameter Name="HoTen" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="KiemTraDoanhThu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Thang" Type="smalldatetime" Mode="In" />
-        </Function>
-        <Function Name="KiemTraDV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TenDV" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="KiemTraKH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="KiemTraPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="MaPhong" Type="smallint" Mode="In" />
-        </Function>
-        <Function Name="KiemTraTienIch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="TenTI" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
+        <Function Name="GetDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetAllPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
+        <Function Name="sp_GetDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_NgayDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NGAYDATPHONG" Type="smalldatetime" Mode="In" />
         </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        <Function Name="sp_SuaDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaDatPhong" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhong" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhuongThuc" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhieuXacNhan" Type="smallint" Mode="In" />
+          <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
+          <Parameter Name="NgayDatPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="NgayTraPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="YeuCauThem" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ThemDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaPhong" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhuongThuc" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhieuXacNhan" Type="smallint" Mode="In" />
+          <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
+          <Parameter Name="NgayDatPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="NgayTraPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="YeuCauThem" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_ThemNhanVien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HOTEN" Type="nvarchar" Mode="In" />
@@ -734,7 +627,11 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <Parameter Name="MADATPHONG" Type="smallint" Mode="In" />
         </Function>
         <Function Name="sp_ThongTinDatPhongThanhCong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_TimKiemPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GiaTri" Type="nvarchar" Mode="In" />
+          <Parameter Name="GiaThap" Type="decimal" Mode="In" />
+          <Parameter Name="GiaCao" Type="decimal" Mode="In" />
+        </Function>
         <Function Name="sp_XemChiTietKhachHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaKH" Type="smallint" Mode="In" />
         </Function>
@@ -747,9 +644,39 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
         <Function Name="sp_XemThongTinPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaPhong" Type="smallint" Mode="In" />
         </Function>
+        <Function Name="sp_XoaDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaDatPhong" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SuaDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaDatPhong" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhong" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhuongThuc" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhieuXacNhan" Type="smallint" Mode="In" />
+          <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
+          <Parameter Name="NgayDatPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="NgayTraPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="YeuCauThem" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="ThemDichVu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenDV" Type="nvarchar" Mode="In" />
           <Parameter Name="LoaiDV" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ThemDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaPhong" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhuongThuc" Type="smallint" Mode="In" />
+          <Parameter Name="MaPhieuXacNhan" Type="smallint" Mode="In" />
+          <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
+          <Parameter Name="NgayDatPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="NgayTraPhong" Type="smalldatetime" Mode="In" />
+          <Parameter Name="YeuCauThem" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="TimKiemPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GiaTri" Type="nvarchar" Mode="In" />
+          <Parameter Name="GiaThap" Type="decimal" Mode="In" />
+          <Parameter Name="GiaCao" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="XoaDonDatPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaDatPhong" Type="smallint" Mode="In" />
         </Function>
         <EntityContainer Name="QLResortModelStoreContainer">
           <EntitySet Name="CheckInOut" EntityType="Self.CheckInOut" Schema="dbo" store:Type="Tables" />
@@ -759,17 +686,27 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <EntitySet Name="DatTienIchResort" EntityType="Self.DatTienIchResort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonGiaPhong" EntityType="Self.DonGiaPhong" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiPhong" EntityType="Self.LoaiPhong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuXacNhanDatPhong" EntityType="Self.PhieuXacNhanDatPhong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Phong" EntityType="Self.Phong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhuongThucThanhToan" EntityType="Self.PhuongThucThanhToan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TienIchResort" EntityType="Self.TienIchResort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongKeDoanhThu" EntityType="Self.ThongKeDoanhThu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TienIchResort" EntityType="Self.TienIchResort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KhachHang].[MaKH] AS [MaKH], 
+    [KhachHang].[HoTen] AS [HoTen], 
+    [KhachHang].[GioiTinh] AS [GioiTinh], 
+    [KhachHang].[SoCMND] AS [SoCMND], 
+    [KhachHang].[SDT] AS [SDT], 
+    [KhachHang].[QuocTich] AS [QuocTich], 
+    [KhachHang].[NgaySinh] AS [NgaySinh], 
+    [KhachHang].[MaTaiKhoan] AS [MaTaiKhoan]
+    FROM [dbo].[KhachHang] AS [KhachHang]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="DanhSachTaiKhoanKhachHang" EntityType="Self.DanhSachTaiKhoanKhachHang" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DanhSachTaiKhoanKhachHang].[MaTaiKhoan] AS [MaTaiKhoan], 
@@ -778,18 +715,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
     [DanhSachTaiKhoanKhachHang].[MaPQ] AS [MaPQ], 
     [DanhSachTaiKhoanKhachHang].[TenPQ] AS [TenPQ]
     FROM [dbo].[DanhSachTaiKhoanKhachHang] AS [DanhSachTaiKhoanKhachHang]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="KhachHangNu" EntityType="Self.KhachHangNu" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [KhachHangNu].[MaKH] AS [MaKH], 
-    [KhachHangNu].[HoTen] AS [HoTen], 
-    [KhachHangNu].[GioiTinh] AS [GioiTinh], 
-    [KhachHangNu].[SoCMND] AS [SoCMND], 
-    [KhachHangNu].[SDT] AS [SDT], 
-    [KhachHangNu].[QuocTich] AS [QuocTich], 
-    [KhachHangNu].[NgaySinh] AS [NgaySinh], 
-    [KhachHangNu].[MaTaiKhoan] AS [MaTaiKhoan]
-    FROM [dbo].[KhachHangNu] AS [KhachHangNu]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ThongTinCheckInOut" EntityType="Self.ThongTinCheckInOut" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -862,14 +787,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
     [XemTenPhong].[TenLoai] AS [TenLoai]
     FROM [dbo].[XemTenPhong] AS [XemTenPhong]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="XemTienIch" EntityType="Self.XemTienIch" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [XemTienIch].[MaPhong] AS [MaPhong], 
-    [XemTienIch].[MaTienIch] AS [MaTienIch], 
-    [XemTienIch].[TenKH] AS [TenKH], 
-    [XemTienIch].[TenTienIch] AS [TenTienIch]
-    FROM [dbo].[XemTienIch] AS [XemTienIch]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="XemThongTinPhong1Giuong" EntityType="Self.XemThongTinPhong1Giuong" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [XemThongTinPhong1Giuong].[MaPhong] AS [MaPhong], 
@@ -877,6 +794,14 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
     [XemThongTinPhong1Giuong].[SoGiuong] AS [SoGiuong], 
     [XemThongTinPhong1Giuong].[DonGia] AS [DonGia]
     FROM [dbo].[XemThongTinPhong1Giuong] AS [XemThongTinPhong1Giuong]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="XemTienIch" EntityType="Self.XemTienIch" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [XemTienIch].[MaPhong] AS [MaPhong], 
+    [XemTienIch].[MaTienIch] AS [MaTienIch], 
+    [XemTienIch].[TenKH] AS [TenKH], 
+    [XemTienIch].[TenTienIch] AS [TenTienIch]
+    FROM [dbo].[XemTienIch] AS [XemTienIch]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_CheckInOut_DatPhong" Association="Self.FK_CheckInOut_DatPhong">
             <End Role="DatPhong" EntitySet="DatPhong" />
@@ -922,10 +847,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             <End Role="Phong" EntitySet="Phong" />
             <End Role="DonGiaPhong" EntitySet="DonGiaPhong" />
           </AssociationSet>
-          <AssociationSet Name="FK_KhachHang_TaiKhoan" Association="Self.FK_KhachHang_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
-            <End Role="KhachHang" EntitySet="KhachHang" />
-          </AssociationSet>
           <AssociationSet Name="FK_NhanVien_ChucVu" Association="Self.FK_NhanVien_ChucVu">
             <End Role="ChucVu" EntitySet="ChucVu" />
             <End Role="NhanVien" EntitySet="NhanVien" />
@@ -945,18 +866,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <AssociationSet Name="FK_Phong_LoaiPhong" Association="Self.FK_Phong_LoaiPhong">
             <End Role="LoaiPhong" EntitySet="LoaiPhong" />
             <End Role="Phong" EntitySet="Phong" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaiKhoan_KhachHang" Association="Self.FK_TaiKhoan_KhachHang">
-            <End Role="KhachHang" EntitySet="KhachHang" />
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaiKhoan_NhanVien" Association="Self.FK_TaiKhoan_NhanVien">
-            <End Role="NhanVien" EntitySet="NhanVien" />
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TaiKhoan_PhanQuyen" Association="Self.FK_TaiKhoan_PhanQuyen">
-            <End Role="PhanQuyen" EntitySet="PhanQuyen" />
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
           <AssociationSet Name="FK_ThongKeDoanhThu_NhanVien" Association="Self.FK_ThongKeDoanhThu_NhanVien">
             <End Role="NhanVien" EntitySet="NhanVien" />
@@ -1144,16 +1053,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <NavigationProperty Name="DatPhongs" Relationship="Self.FK_DatPhong_PhuongThucThanhToan" FromRole="PhuongThucThanhToan" ToRole="DatPhong" />
           <NavigationProperty Name="PhieuXacNhanDatPhongs" Relationship="Self.FK_PhieuXacNhanDatPhong_PhuongThucThanhToan" FromRole="PhuongThucThanhToan" ToRole="PhieuXacNhanDatPhong" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
         <EntityType Name="TaiKhoan">
           <Key>
             <PropertyRef Name="MaTaiKhoan" />
@@ -1203,22 +1102,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <Property Name="Passwordd" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaPQ" Type="Int16" />
           <Property Name="TenPQ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="KhachHangNu">
-          <Key>
-            <PropertyRef Name="MaKH" />
-            <PropertyRef Name="HoTen" />
-            <PropertyRef Name="SoCMND" />
-            <PropertyRef Name="SDT" />
-          </Key>
-          <Property Name="MaKH" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GioiTinh" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="SoCMND" Type="Int64" Nullable="false" />
-          <Property Name="SDT" Type="Int32" Nullable="false" />
-          <Property Name="QuocTich" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
-          <Property Name="MaTaiKhoan" Type="Int16" />
         </EntityType>
         <EntityType Name="ThongTinCheckInOut">
           <Key>
@@ -1608,12 +1491,10 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <EntitySet Name="PhieuXacNhanDatPhongs" EntityType="Self.PhieuXacNhanDatPhong" />
           <EntitySet Name="Phongs" EntityType="Self.Phong" />
           <EntitySet Name="PhuongThucThanhToans" EntityType="Self.PhuongThucThanhToan" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
           <EntitySet Name="TienIchResorts" EntityType="Self.TienIchResort" />
           <EntitySet Name="ThongKeDoanhThus" EntityType="Self.ThongKeDoanhThu" />
           <EntitySet Name="DanhSachTaiKhoanKhachHangs" EntityType="Self.DanhSachTaiKhoanKhachHang" />
-          <EntitySet Name="KhachHangNus" EntityType="Self.KhachHangNu" />
           <EntitySet Name="ThongTinCheckInOuts" EntityType="Self.ThongTinCheckInOut" />
           <EntitySet Name="ThongTinDatPhongs" EntityType="Self.ThongTinDatPhong" />
           <EntitySet Name="ThongTinNhanViens" EntityType="Self.ThongTinNhanVien" />
@@ -1800,6 +1681,62 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             <Parameter Name="LoaiDV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_GetAllPhong" ReturnType="Collection(QLResortModel.sp_GetAllPhong_Result)" />
+          <FunctionImport Name="sp_GetDonDatPhong" ReturnType="Collection(QLResortModel.sp_GetDonDatPhong_Result)" />
+          <FunctionImport Name="sp_SuaDonDatPhong" ReturnType="Collection(String)">
+            <Parameter Name="MaDatPhong" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhong" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhuongThuc" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhieuXacNhan" Mode="In" Type="Int16" />
+            <Parameter Name="TenKH" Mode="In" Type="String" />
+            <Parameter Name="NgayDatPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayTraPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="YeuCauThem" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ThemDonDatPhong" ReturnType="Collection(String)">
+            <Parameter Name="MaPhong" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhuongThuc" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhieuXacNhan" Mode="In" Type="Int16" />
+            <Parameter Name="TenKH" Mode="In" Type="String" />
+            <Parameter Name="NgayDatPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayTraPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="YeuCauThem" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TimKiemPhong" ReturnType="Collection(QLResortModel.sp_TimKiemPhong_Result)">
+            <Parameter Name="GiaTri" Mode="In" Type="String" />
+            <Parameter Name="GiaThap" Mode="In" Type="Decimal" />
+            <Parameter Name="GiaCao" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_XoaDonDatPhong" ReturnType="Collection(String)">
+          <Parameter Name="MaDatPhong" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="GetDonDatPhong" ReturnType="Collection(QLResortModel.GetDonDatPhong_Result)" />
+          <FunctionImport Name="SuaDonDatPhong" ReturnType="Collection(String)">
+            <Parameter Name="MaDatPhong" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhong" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhuongThuc" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhieuXacNhan" Mode="In" Type="Int16" />
+            <Parameter Name="TenKH" Mode="In" Type="String" />
+            <Parameter Name="NgayDatPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayTraPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="YeuCauThem" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ThemDonDatPhong" ReturnType="Collection(String)">
+            <Parameter Name="MaPhong" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhuongThuc" Mode="In" Type="Int16" />
+            <Parameter Name="MaPhieuXacNhan" Mode="In" Type="Int16" />
+            <Parameter Name="TenKH" Mode="In" Type="String" />
+            <Parameter Name="NgayDatPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="NgayTraPhong" Mode="In" Type="DateTime" />
+            <Parameter Name="YeuCauThem" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="TimKiemPhong" ReturnType="Collection(QLResortModel.TimKiemPhong_Result)">
+            <Parameter Name="GiaTri" Mode="In" Type="String" />
+            <Parameter Name="GiaThap" Mode="In" Type="Decimal" />
+            <Parameter Name="GiaCao" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="XoaDonDatPhong" ReturnType="Collection(String)">
+            <Parameter Name="MaDatPhong" Mode="In" Type="Int16" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="KiemTraDV_Result">
           <Property Type="Int16" Name="MaPhong" Nullable="false" />
@@ -1919,6 +1856,50 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <Property Type="Decimal" Name="DonGia" Nullable="true" Precision="18" Scale="2" />
           <Property Type="String" Name="MoTaThongTin" Nullable="true" />
           <Property Type="String" Name="TrangThai" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="sp_GetDonDatPhong_Result">
+          <Property Type="Int16" Name="MaDatPhong" Nullable="false" />
+          <Property Type="Int16" Name="MaPhong" Nullable="false" />
+          <Property Type="Int16" Name="MaPhuongThuc" Nullable="false" />
+          <Property Type="Int16" Name="MaPhieuXacNhan" Nullable="true" />
+          <Property Type="String" Name="TenKH" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="NgayDatPhong" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="NgayTraPhong" Nullable="true" Precision="16" />
+          <Property Type="String" Name="YeuCauThem" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_TimKiemPhong_Result">
+          <Property Type="Int16" Name="MaPhong" Nullable="false" />
+          <Property Type="Int16" Name="MaLoai" Nullable="false" />
+          <Property Type="Int16" Name="SoGiuong" Nullable="false" />
+          <Property Type="String" Name="HinhAnh" Nullable="true" />
+          <Property Type="Decimal" Name="DonGia" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="MoTaThongTin" Nullable="true" />
+          <Property Type="String" Name="TrangThai" Nullable="false" MaxLength="25" />
+          <Property Type="Int16" Name="MaLoai1" Nullable="false" />
+          <Property Type="String" Name="TenLoai" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="ChiTiet" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="GetDonDatPhong_Result">
+          <Property Type="Int16" Name="MaDatPhong" Nullable="false" />
+          <Property Type="Int16" Name="MaPhong" Nullable="false" />
+          <Property Type="Int16" Name="MaPhuongThuc" Nullable="false" />
+          <Property Type="Int16" Name="MaPhieuXacNhan" Nullable="true" />
+          <Property Type="String" Name="TenKH" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="NgayDatPhong" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="NgayTraPhong" Nullable="true" Precision="16" />
+          <Property Type="String" Name="YeuCauThem" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="TimKiemPhong_Result">
+          <Property Type="Int16" Name="MaPhong" Nullable="false" />
+          <Property Type="Int16" Name="MaLoai" Nullable="false" />
+          <Property Type="Int16" Name="SoGiuong" Nullable="false" />
+          <Property Type="String" Name="HinhAnh" Nullable="true" />
+          <Property Type="Decimal" Name="DonGia" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="MoTaThongTin" Nullable="true" />
+          <Property Type="String" Name="TrangThai" Nullable="false" MaxLength="25" />
+          <Property Type="Int16" Name="MaLoai1" Nullable="false" />
+          <Property Type="String" Name="TenLoai" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="ChiTiet" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2079,17 +2060,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QLResortModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TaiKhoans">
             <EntityTypeMapping TypeName="QLResortModel.TaiKhoan">
               <MappingFragment StoreEntitySet="TaiKhoan">
@@ -2131,20 +2101,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
                 <ScalarProperty Name="Passwordd" ColumnName="Passwordd" />
                 <ScalarProperty Name="MaPQ" ColumnName="MaPQ" />
                 <ScalarProperty Name="TenPQ" ColumnName="TenPQ" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KhachHangNus">
-            <EntityTypeMapping TypeName="QLResortModel.KhachHangNu">
-              <MappingFragment StoreEntitySet="KhachHangNu">
-                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-                <ScalarProperty Name="SoCMND" ColumnName="SoCMND" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="QuocTich" ColumnName="QuocTich" />
-                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2253,74 +2209,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="KiemTraDoanhThu" FunctionName="QLResortModel.Store.KiemTraDoanhThu" />
-          <FunctionImportMapping FunctionImportName="KiemTraDV" FunctionName="QLResortModel.Store.KiemTraDV">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLResortModel.KiemTraDV_Result">
-                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
-                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="MaDichVu1" ColumnName="MaDichVu1" />
-                <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
-                <ScalarProperty Name="LoaiDichVu" ColumnName="LoaiDichVu" />
-                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
-                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="KiemTraKH" FunctionName="QLResortModel.Store.KiemTraKH">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLResortModel.KiemTraKH_Result">
-                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
-                <ScalarProperty Name="MaTienIch" ColumnName="MaTienIch" />
-                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="KiemTraPhong" FunctionName="QLResortModel.Store.KiemTraPhong">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLResortModel.KiemTraPhong_Result">
-                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
-                <ScalarProperty Name="MaTienIch" ColumnName="MaTienIch" />
-                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
-                <ScalarProperty Name="MaTienIch1" ColumnName="MaTienIch1" />
-                <ScalarProperty Name="TenTienIch" ColumnName="TenTienIch" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="KiemTraTienIch" FunctionName="QLResortModel.Store.KiemTraTienIch">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLResortModel.KiemTraTienIch_Result">
-                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
-                <ScalarProperty Name="MaTienIch" ColumnName="MaTienIch" />
-                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
-                <ScalarProperty Name="MaTienIch1" ColumnName="MaTienIch1" />
-                <ScalarProperty Name="TenTienIch" ColumnName="TenTienIch" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLResortModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLResortModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLResortModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLResortModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLResortModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLResortModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLResortModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_NgayDatPhong" FunctionName="QLResortModel.Store.sp_NgayDatPhong">
             <ResultMapping>
               <ComplexTypeMapping TypeName="QLResortModel.sp_NgayDatPhong_Result">
@@ -2337,7 +2225,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLResortModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_ThemNhanVien" FunctionName="QLResortModel.Store.sp_ThemNhanVien" />
           <FunctionImportMapping FunctionImportName="sp_ThemPhong" FunctionName="QLResortModel.Store.sp_ThemPhong" />
           <FunctionImportMapping FunctionImportName="sp_ThemTaiKhoan" FunctionName="QLResortModel.Store.sp_ThemTaiKhoan" />
@@ -2373,7 +2260,6 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLResortModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_XemChiTietKhachHang" FunctionName="QLResortModel.Store.sp_XemChiTietKhachHang">
             <ResultMapping>
               <ComplexTypeMapping TypeName="QLResortModel.sp_XemChiTietKhachHang_Result">
@@ -2438,6 +2324,72 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetDonDatPhong" FunctionName="QLResortModel.Store.sp_GetDonDatPhong">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLResortModel.sp_GetDonDatPhong_Result">
+                <ScalarProperty Name="MaDatPhong" ColumnName="MaDatPhong" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
+                <ScalarProperty Name="MaPhieuXacNhan" ColumnName="MaPhieuXacNhan" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="NgayDatPhong" ColumnName="NgayDatPhong" />
+                <ScalarProperty Name="NgayTraPhong" ColumnName="NgayTraPhong" />
+                <ScalarProperty Name="YeuCauThem" ColumnName="YeuCauThem" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_SuaDonDatPhong" FunctionName="QLResortModel.Store.sp_SuaDonDatPhong" />
+          <FunctionImportMapping FunctionImportName="sp_ThemDonDatPhong" FunctionName="QLResortModel.Store.sp_ThemDonDatPhong" />
+          <FunctionImportMapping FunctionImportName="sp_TimKiemPhong" FunctionName="QLResortModel.Store.sp_TimKiemPhong">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLResortModel.sp_TimKiemPhong_Result">
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="SoGiuong" ColumnName="SoGiuong" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="MoTaThongTin" ColumnName="MoTaThongTin" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MaLoai1" ColumnName="MaLoai1" />
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_XoaDonDatPhong" FunctionName="QLResortModel.Store.sp_XoaDonDatPhong" />
+          <FunctionImportMapping FunctionImportName="GetDonDatPhong" FunctionName="QLResortModel.Store.GetDonDatPhong">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLResortModel.GetDonDatPhong_Result">
+                <ScalarProperty Name="MaDatPhong" ColumnName="MaDatPhong" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="MaPhuongThuc" ColumnName="MaPhuongThuc" />
+                <ScalarProperty Name="MaPhieuXacNhan" ColumnName="MaPhieuXacNhan" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="NgayDatPhong" ColumnName="NgayDatPhong" />
+                <ScalarProperty Name="NgayTraPhong" ColumnName="NgayTraPhong" />
+                <ScalarProperty Name="YeuCauThem" ColumnName="YeuCauThem" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SuaDonDatPhong" FunctionName="QLResortModel.Store.SuaDonDatPhong" />
+          <FunctionImportMapping FunctionImportName="ThemDonDatPhong" FunctionName="QLResortModel.Store.ThemDonDatPhong" />
+          <FunctionImportMapping FunctionImportName="TimKiemPhong" FunctionName="QLResortModel.Store.TimKiemPhong">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLResortModel.TimKiemPhong_Result">
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="SoGiuong" ColumnName="SoGiuong" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="MoTaThongTin" ColumnName="MoTaThongTin" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MaLoai1" ColumnName="MaLoai1" />
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+                <ScalarProperty Name="ChiTiet" ColumnName="ChiTiet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="XoaDonDatPhong" FunctionName="QLResortModel.Store.XoaDonDatPhong" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

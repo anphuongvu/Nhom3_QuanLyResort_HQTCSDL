@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -129,9 +129,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DatPhongController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DatPhongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhongController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="DAL\DatPhongDAL.cs" />
+    <Compile Include="DAL\DichVuDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,10 +179,10 @@
     <Compile Include="Models\DonGiaPhong.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\KhachHang.cs">
+    <Compile Include="Models\GetDonDatPhong_Result.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\KhachHangNu.cs">
+    <Compile Include="Models\KhachHang.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KiemTraDV_Result.cs">
@@ -213,6 +218,9 @@
     <Compile Include="Models\sp_GetAllPhong_Result.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_GetDonDatPhong_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -228,6 +236,9 @@
     <Compile Include="Models\sp_ThongTinDatPhong_Result.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_TimKiemPhong_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_XemChiTietKhachHang_Result.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
@@ -238,9 +249,6 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_XemThongTinPhong_Result.cs">
-      <DependentUpon>DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TaiKhoan.cs">
@@ -259,6 +267,9 @@
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TienIchResort.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TimKiemPhong_Result.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\XemCacPhongGiaDinh.cs">
@@ -330,6 +341,34 @@
       <DependentUpon>DB.edmx</DependentUpon>
       <LastGenOutput>DB.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\Nhom3_WebQuanLyResort_CHQTCSDL.sql" />
+    <Content Include="Public\css\responsive-style.css" />
+    <Content Include="Public\css\style.css" />
+    <Content Include="Public\images\Gearvn_Biển_-12.jpg" />
+    <Content Include="Public\images\Gearvn_Biển_-35.jpg" />
+    <Content Include="Public\images\Gearvn_Biển_-36.jpg" />
+    <Content Include="Public\images\Gearvn_Biển_-37.jpg" />
+    <Content Include="Public\images\Gearvn_Biển_-9.jpg" />
+    <Content Include="Public\images\logo.png" />
+    <Content Include="Public\images\pic1.jpg" />
+    <Content Include="Public\images\pic2.jpg" />
+    <Content Include="Public\images\pic3.jpg" />
+    <Content Include="Public\images\pic4.jpg" />
+    <Content Include="Public\images\pool.jpg" />
+    <Content Include="Public\images\room\room1.jpg" />
+    <Content Include="Public\images\room\room2.jpg" />
+    <Content Include="Public\images\room\room3.jpg" />
+    <Content Include="Public\images\spa.jpg" />
+    <Content Include="Public\images\team\ahnhyoseop.jpg" />
+    <Content Include="Public\images\team\do.jpg" />
+    <Content Include="Public\images\team\hansoohee.jpg" />
+    <Content Include="Public\images\team\jisoo.jpg" />
+    <Content Include="Public\images\team\njh.png" />
+    <Content Include="Public\images\team\rose.jpg" />
+    <Content Include="Public\images\team\yoona.jpg" />
+    <Content Include="Public\images\tieccuoi.jpg" />
+    <Content Include="Public\images\ushi.jpg" />
+    <Content Include="Public\js\main.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -343,6 +382,25 @@
       <DependentUpon>DB.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\Admin\Views\Phong\Index.cshtml" />
+    <Content Include="Public\images\service-icon1.webp" />
+    <Content Include="Public\images\service-icon2.webp" />
+    <Content Include="Public\images\service-icon3.webp" />
+    <Content Include="Public\images\service-icon4.webp" />
+    <Content Include="Public\images\service1.webp" />
+    <Content Include="Public\images\service2.webp" />
+    <Content Include="Public\images\service3.webp" />
+    <Content Include="Public\images\service6.webp" />
+    <Content Include="Areas\Admin\Views\Phong\Index2.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhong\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhongs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhongs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhongs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhongs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhongs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhong\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhong\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhong\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DatPhong\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -365,10 +423,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\NguoiDung\About.cshtml" />
+    <Content Include="Views\NguoiDung\Contact.cshtml" />
+    <Content Include="Views\NguoiDung\Index.cshtml" />
+    <Content Include="Views\Search\TimKiem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

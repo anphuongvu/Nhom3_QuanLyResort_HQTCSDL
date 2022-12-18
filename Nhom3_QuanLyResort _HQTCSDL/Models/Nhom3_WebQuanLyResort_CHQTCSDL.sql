@@ -2011,3 +2011,141 @@ begin
 end
 
 exec sp_GetAllPhong
+
+
+
+CREATE PROCEDURE GetDichVu
+AS
+	SELECT * FROM DichVu with (nolock)
+go;
+
+
+Create PROCEDURE ThemDichVu
+@TenDichVu nvarchar(50),
+@LoaiDichVu nvarchar(50),
+@NgayBatDau smalldatetime,
+@NgayKetThuc smalldatetime
+AS
+	INSERT into DichVu values (@TenDichVu, @LoaiDichVu, @NgayBatDau, @NgayKetThuc)
+go;
+
+CREATE PROCEDURE XoaDichVu
+@MaDichVu smallint
+AS
+	Delete from DichVu where MaDichVu = @MaDichVu
+go;
+
+CREATE PROCEDURE GetPhong
+AS
+	SELECT * FROM Phong with (nolock)
+go;
+
+
+
+exec GetDichVu
+go
+
+
+Create PROCEDURE TimKiemPhong
+@GiaTri nvarchar(50),
+@GiaThap decimal(16, 2),
+@GiaCao decimal(16, 2)
+AS
+	select * from Phong p, LoaiPhong lp 
+	where (p.MaLoai = lp.MaLoai) and (CHARINDEX(@GiaTri, p.MoTaThongTin) > 0 or (ISNUMERIC(@GiaTri) = 1 and CAST(@GiaTri AS int)  = p.MaPhong))
+			and 10 <= p.DonGia and @GiaCao >= p.DonGia and p.TrangThai = 0
+
+go;
+
+exec TimKiemPhong N'101', 0, 10000000
+
+select * from Phong p, LoaiPhong lp 
+where (p.MaLoai = lp.MaLoai) and (CHARINDEX('101', p.MoTaThongTin) > 0 or (ISNUMERIC('101') = 1 and CAST('101' AS int)  = p.MaPhong))
+		and 10 < p.DonGia and 1000000000 > p.DonGia and p.TrangThai = 0
+
+
+go
+
+-- Don dat phong
+
+CREATE PROCEDURE GetDonDatPhong
+AS
+	SELECT dp.* FROM DatPhong dp, Phong p where p.MaPhong = dp.MaPhong
+go;
+
+exec GetDonDatPhong 
+go
+
+
+Create PROCEDURE ThemDonDatPhong
+@MaPhong smallint,
+@MaPhuongThuc smallint,
+@MaPhieuXacNhan smallint,
+@TenKH nvarchar(50),
+@NgayDatPhong smalldatetime,
+@NgayTraPhong smalldatetime,
+@YeuCauThem nvarchar(255)
+AS
+	begin try
+		begin tran
+			INSERT into DatPhong values (@MaPhong, @MaPhuongThuc, @MaPhieuXacNhan, @TenKH, @NgayDatPhong, @NgayTraPhong, @YeuCauThem)
+		commit tran
+	end try
+	begin catch
+		rollback tran
+		SELECT ERROR_MESSAGE()
+	end catch
+go;
+
+exec ThemDonDatPhong N'101', 1, NULL, N'ABC', '2022-03-29 00:00:00', '2022-03-30 00:00:00', NULL
+go
+
+Create PROCEDURE SuaDonDatPhong
+@MaDatPhong smallint,
+@MaPhong smallint,
+@MaPhuongThuc smallint,
+@MaPhieuXacNhan smallint,
+@TenKH nvarchar(50),
+@NgayDatPhong smalldatetime,
+@NgayTraPhong smalldatetime,
+@YeuCauThem nvarchar(255)
+AS
+	begin try
+		begin tran
+			Update DatPhong set 
+			MaPhong=@MaPhong, 
+			MaPhuongThuc=@MaPhuongThuc, 
+			MaPhieuXacNhan=@MaPhieuXacNhan, 
+			TenKH=@TenKH, 
+			NgayDatPhong=@NgayDatPhong, 
+			NgayTraPhong=@NgayTraPhong, 
+			YeuCauThem=@YeuCauThem	
+			WHERE MaDatPhong = @MaDatPhong
+		commit tran
+	end try
+	begin catch
+		rollback tran
+		SELECT ERROR_MESSAGE()
+	end catch
+go
+
+exec SuaDonDatPhong 33, N'101', 1, NULL, N'ABCD', '2022-03-29 00:00:00', '2022-03-30 00:00:00', N'Ví dụ'
+go
+
+Create PROCEDURE XoaDonDatPhong
+@MaDatPhong smallint
+AS
+	begin try
+		begin tran
+			Delete from DatPhong where MaDatPhong = @MaDatPhong
+		commit tran
+	end try
+	begin catch
+		rollback tran
+		SELECT ERROR_MESSAGE()
+	end catch
+	
+go
+
+exec XoaDonDatPhong 33
+go

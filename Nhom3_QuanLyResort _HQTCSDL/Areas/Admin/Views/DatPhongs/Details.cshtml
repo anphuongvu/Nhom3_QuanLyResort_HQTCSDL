@@ -1,0 +1,83 @@
+﻿@model Nhom3_QuanLyResort__HQTCSDL.Models.DatPhong
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DatPhong</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDatPhong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDatPhong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayTraPhong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayTraPhong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YeuCauThem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YeuCauThem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckInOut.TenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckInOut.TenKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhieuXacNhanDatPhong.TenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhieuXacNhanDatPhong.TenKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phong.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phong.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhuongThucThanhToan.TenPhuongThuc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDatPhong }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

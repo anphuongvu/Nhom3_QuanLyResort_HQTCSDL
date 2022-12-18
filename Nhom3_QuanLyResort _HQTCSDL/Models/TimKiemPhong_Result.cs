@@ -10,14 +10,18 @@
 namespace Nhom3_QuanLyResort__HQTCSDL.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class TimKiemPhong_Result
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public short MaPhong { get; set; }
+        public short MaLoai { get; set; }
+        public short SoGiuong { get; set; }
+        public string HinhAnh { get; set; }
+        public Nullable<decimal> DonGia { get; set; }
+        public string MoTaThongTin { get; set; }
+        public string TrangThai { get; set; }
+        public short MaLoai1 { get; set; }
+        public string TenLoai { get; set; }
+        public string ChiTiet { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace Nhom3_QuanLyResort__HQTCSDL
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "NguoiDung", action = "Index", id = UrlParameter.Optional },
                 new[] { "Nhom3_QuanLyResort_HQTCSDL.Controllers" }
             );
 
