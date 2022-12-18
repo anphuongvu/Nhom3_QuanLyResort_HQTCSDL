@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Nhom3_QuanLyResort__HQTCSDL.Models.TienIchResort>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTienIch)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenTienIch)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaTienIch }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaTienIch }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaTienIch })
+        </td>
+    </tr>
+}
+
+</table>
