@@ -2045,17 +2045,20 @@ go;
 exec GetDichVu
 go
 
-
-Create PROCEDURE TimKiemPhong
+--- tu day
+use QLResort
+go
+Create PROCEDURE sp_TimKiemPhong
 @GiaTri nvarchar(50),
 @GiaThap decimal(16, 2),
 @GiaCao decimal(16, 2)
 AS
+begin
 	select * from Phong p, LoaiPhong lp 
 	where (p.MaLoai = lp.MaLoai) and (CHARINDEX(@GiaTri, p.MoTaThongTin) > 0 or (ISNUMERIC(@GiaTri) = 1 and CAST(@GiaTri AS int)  = p.MaPhong))
 			and 10 <= p.DonGia and @GiaCao >= p.DonGia and p.TrangThai = 0
-
-go;
+end
+go
 
 exec TimKiemPhong N'101', 0, 10000000
 
@@ -2068,16 +2071,16 @@ go
 
 -- Don dat phong
 
-CREATE PROCEDURE GetDonDatPhong
+CREATE PROCEDURE sp_GetDonDatPhong
 AS
 	SELECT dp.* FROM DatPhong dp, Phong p where p.MaPhong = dp.MaPhong
-go;
+go
 
 exec GetDonDatPhong 
 go
 
 
-Create PROCEDURE ThemDonDatPhong
+Create PROCEDURE sp_ThemDonDatPhong
 @MaPhong smallint,
 @MaPhuongThuc smallint,
 @MaPhieuXacNhan smallint,
@@ -2095,12 +2098,12 @@ AS
 		rollback tran
 		SELECT ERROR_MESSAGE()
 	end catch
-go;
-
-exec ThemDonDatPhong N'101', 1, NULL, N'ABC', '2022-03-29 00:00:00', '2022-03-30 00:00:00', NULL
 go
 
-Create PROCEDURE SuaDonDatPhong
+exec sp_ThemDonDatPhong N'101', 1, NULL, N'ABC', '2022-03-29 00:00:00', '2022-03-30 00:00:00', NULL
+go
+
+Create PROCEDURE sp_SuaDonDatPhong
 @MaDatPhong smallint,
 @MaPhong smallint,
 @MaPhuongThuc smallint,
@@ -2129,10 +2132,10 @@ AS
 	end catch
 go
 
-exec SuaDonDatPhong 33, N'101', 1, NULL, N'ABCD', '2022-03-29 00:00:00', '2022-03-30 00:00:00', N'Ví dụ'
+exec sp_SuaDonDatPhong 33, N'101', 1, NULL, N'ABCD', '2022-03-29 00:00:00', '2022-03-30 00:00:00', N'Ví dụ'
 go
 
-Create PROCEDURE XoaDonDatPhong
+Create PROCEDURE sp_XoaDonDatPhong
 @MaDatPhong smallint
 AS
 	begin try
@@ -2147,5 +2150,5 @@ AS
 	
 go
 
-exec XoaDonDatPhong 33
+exec sp_XoaDonDatPhong 33
 go
