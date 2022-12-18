@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLResortModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLResortModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CheckInOut">
           <Key>
             <PropertyRef Name="MaDatPhong" />
@@ -310,11 +310,6 @@ warning 6002: The table/view 'QLResort.dbo.XemDichVu' does not have a primary ke
           <Property Name="NgayKetThuc" Type="smalldatetime" />
           <Property Name="TenDichVu" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'QLResort.dbo.XemDoanhThu' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="XemDoanhThu">
-          <Property Name="TongDoanhThu" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'QLResort.dbo.XemKhachHang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="XemKhachHang">
@@ -694,6 +689,7 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_GetAllPhong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -967,8 +963,7 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             <End Role="ThongKeDoanhThu" EntitySet="ThongKeDoanhThu" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLResortModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1713,19 +1708,19 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             <End Role="PhieuXacNhanDatPhong" EntitySet="PhieuXacNhanDatPhongs" />
           </AssociationSet>
           <FunctionImport Name="KiemTraDoanhThu" ReturnType="Collection(Decimal)">
-            <Parameter Name="Thang" Mode="In" Type="DateTime" />
+          <Parameter Name="Thang" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="KiemTraDV" ReturnType="Collection(QLResortModel.KiemTraDV_Result)">
-            <Parameter Name="TenDV" Mode="In" Type="String" />
+          <Parameter Name="TenDV" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="KiemTraKH" ReturnType="Collection(QLResortModel.KiemTraKH_Result)">
-            <Parameter Name="TenKH" Mode="In" Type="String" />
+          <Parameter Name="TenKH" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="KiemTraPhong" ReturnType="Collection(QLResortModel.KiemTraPhong_Result)">
-            <Parameter Name="MaPhong" Mode="In" Type="Int16" />
+          <Parameter Name="MaPhong" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="KiemTraTienIch" ReturnType="Collection(QLResortModel.KiemTraTienIch_Result)">
-            <Parameter Name="TenTI" Mode="In" Type="String" />
+          <Parameter Name="TenTI" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1752,7 +1747,7 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_NgayDatPhong" ReturnType="Collection(QLResortModel.sp_NgayDatPhong_Result)">
-            <Parameter Name="NGAYDATPHONG" Mode="In" Type="DateTime" />
+          <Parameter Name="NGAYDATPHONG" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="sp_renamediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1784,26 +1779,27 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             <Parameter Name="MANV" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_ThongTinDatPhong" ReturnType="Collection(QLResortModel.sp_ThongTinDatPhong_Result)">
-            <Parameter Name="MADATPHONG" Mode="In" Type="Int16" />
+          <Parameter Name="MADATPHONG" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_ThongTinDatPhongThanhCong" ReturnType="Collection(QLResortModel.sp_ThongTinDatPhongThanhCong_Result)" />
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_XemChiTietKhachHang" ReturnType="Collection(QLResortModel.sp_XemChiTietKhachHang_Result)">
-            <Parameter Name="MaKH" Mode="In" Type="Int16" />
+          <Parameter Name="MaKH" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_XemDonGiaPhong" ReturnType="Collection(QLResortModel.sp_XemDonGiaPhong_Result)">
-            <Parameter Name="MaPhong" Mode="In" Type="Int16" />
+          <Parameter Name="MaPhong" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="sp_XemThongTinKhachHang" ReturnType="Collection(QLResortModel.sp_XemThongTinKhachHang_Result)">
-            <Parameter Name="HoTen" Mode="In" Type="String" />
+          <Parameter Name="HoTen" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_XemThongTinPhong" ReturnType="Collection(QLResortModel.sp_XemThongTinPhong_Result)">
-            <Parameter Name="MaPhong" Mode="In" Type="Int16" />
+          <Parameter Name="MaPhong" Mode="In" Type="Int16" />
           </FunctionImport>
           <FunctionImport Name="ThemDichVu">
             <Parameter Name="TenDV" Mode="In" Type="String" />
             <Parameter Name="LoaiDV" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetAllPhong" ReturnType="Collection(QLResortModel.sp_GetAllPhong_Result)" />
         </EntityContainer>
         <ComplexType Name="KiemTraDV_Result">
           <Property Type="Int16" Name="MaPhong" Nullable="false" />
@@ -1907,6 +1903,15 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
         </ComplexType>
         <ComplexType Name="sp_XemThongTinPhong_Result">
           <Property Type="String" Name="TenLoai" Nullable="false" MaxLength="255" />
+          <Property Type="Int16" Name="MaPhong" Nullable="false" />
+          <Property Type="Int16" Name="MaLoai" Nullable="false" />
+          <Property Type="Int16" Name="SoGiuong" Nullable="false" />
+          <Property Type="String" Name="HinhAnh" Nullable="true" />
+          <Property Type="Decimal" Name="DonGia" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="MoTaThongTin" Nullable="true" />
+          <Property Type="String" Name="TrangThai" Nullable="false" MaxLength="25" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllPhong_Result">
           <Property Type="Int16" Name="MaPhong" Nullable="false" />
           <Property Type="Int16" Name="MaLoai" Nullable="false" />
           <Property Type="Int16" Name="SoGiuong" Nullable="false" />
@@ -2420,6 +2425,19 @@ warning 6002: The table/view 'QLResort.dbo.XemThongTinPhong1Giuong' does not hav
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ThemDichVu" FunctionName="QLResortModel.Store.ThemDichVu" />
+          <FunctionImportMapping FunctionImportName="sp_GetAllPhong" FunctionName="QLResortModel.Store.sp_GetAllPhong">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLResortModel.sp_GetAllPhong_Result">
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="SoGiuong" ColumnName="SoGiuong" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="MoTaThongTin" ColumnName="MoTaThongTin" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

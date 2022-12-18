@@ -363,5 +363,10 @@ namespace Nhom3_QuanLyResort__HQTCSDL.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ThemDichVu", tenDVParameter, loaiDVParameter);
         }
+    
+        public virtual ObjectResult<sp_GetAllPhong_Result> sp_GetAllPhong()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllPhong_Result>("sp_GetAllPhong");
+        }
     }
 }

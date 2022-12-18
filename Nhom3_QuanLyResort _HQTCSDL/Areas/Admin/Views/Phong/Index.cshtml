@@ -1,0 +1,32 @@
+﻿@using Nhom3_QuanLyResort__HQTCSDL.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    @model IEnumerable<sp_GetAllPhong_Result>
+}
+
+<h2>Index</h2>
+
+<div>
+    <table>
+        <tr>
+            <th>
+                Mã Phòng
+            </th>
+            <th>
+                Mã Loại
+            </th>
+            <th></th>
+        </tr>
+        @foreach (sp_GetAllPhong_Result item in Model)
+         {
+            <tr>
+                <td>@item.MaPhong</td>
+                <td>@item.MaLoai</td>
+            </tr>
+
+         }
+    </table>
+
+    
+</div>
